@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a successful data project looked like — Piotr Jodko</title>
+<meta name="description" content="A bank, a decimated team, an unrealistic schedule — and the framework that let the analysts do the engineers' work, and enjoy it.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="../">
+      <span class="glyph">PJ</span>
+      <span class="who">Piotr Jodko</span>
+    </a>
+    <nav>
+      <a href="../#offers">Engagements</a>
+      <a href="../#writing">Writing</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="essay">
+<article>
+
+  <a class="crumb" href="../#writing">← Writing</a>
+
+  <h1>What a successful data project looked like</h1>
+  <p class="meta">Case notes · a Polish bank, mid-2000s · SAS · ~900 words · draft</p>
+
+  <p>
+    People sometimes ask what a successful data project looks like from the inside, because most of us have never been on one. Here is the one I keep coming back to. It happened at a bank, on SAS, twenty years ago, and the parts of it that mattered are still true.
+  </p>
+
+  <p>
+    The team was a mix of programmers and business analysts, arranged the classy way: an analyst sat next to a programmer, the analyst did their best to explain the business rules, and the programmer tried to turn them into code on the fly. It was not very effective, which I worked out soon after joining. So I started doing it differently — talking with the analysts first, gathering all the requirements, building an overall picture of what had to be done, designing the solution, <em>reducing</em> it, and only then implementing. The reduction step was the valuable one. A story an analyst told case by case could often be summarised in one formula, instead of implemented case by case.
+  </p>
+
+  <p>
+    Then we were handed another large project — something close to Funds Transfer Pricing — with a decimated team and a schedule nobody believed. Commercial ETL tools were out of scope (and, with the possible exception of Ab Initio, they have rarely been as valuable as they are fancy), so we were resigned to hand-coding. I thought we could still change how we worked.
+  </p>
+
+  <p>
+    I spent a few days circling the problem. There were patterns; I could feel them before I could name them. The basic operations repeated in every process we had ever built: filter, join, aggregate, transform by rules that analysts kept in Excel. And most of those operations had simple shapes. We summarised data sets hundreds of columns wide, and almost every numeric column was summed while the rest were used for grouping. With some discipline in data modelling, the join key could be resolved automatically, and a whole join — normally a complicated piece of SAS Base with data preparation around it — could be written in a few words and optimised by the framework. The Excel-driven transformations, which had always needed a lot of code around them, needed governance instead: a cohesive way for analysts to lay out their spreadsheets. What had been a time-consuming coding exercise became a one-line statement in a semi-code we made up as we went.
+  </p>
+
+  <p>
+    I was lucky in the people. The other programmer liked the idea, and within a few days we had a first version of the framework. The few analysts left on the project were told they could now design the processes themselves, and — this surprised me a little — they liked it. From then on the engineers supervised and supported, and the analysts did most of the work.
+  </p>
+
+  <p>
+    There was one more thing, and it turned out to be the critical one: <strong>error management</strong>. We accepted from the start that there would be errors, lots of them, and we built error detection and informative error reporting into the framework before we built anything else. As a result, the people designing and testing their processes could resolve most of their own problems. The most common source of trouble was the spreadsheets. In the traditional set-up, every error meant a programmer spending time investigating, only to report back to the analyst that some rule in their spreadsheet was syntactically wrong. A disaster, but a well-established one. In our set-up, the framework told the analyst directly.
+  </p>
+
+  <p>
+    I still think this is under-rated. The common approach, then and now, is to get any results as soon as possible under favourable circumstances and mask the errors. It is myopic, and it still works for many people, for a while.
+  </p>
+
+  <p>
+    Over the following weeks we wrote a few thousand lines of code and semi-code, and generated close to a hundred thousand lines of system code from it. My rough estimate is that the traditional approach would have needed around thirty thousand hand-written lines — and the team to write them, which we did not have. The project was delivered with only a slight delay, against odds nobody had liked.
+  </p>
+
+  <p>What made it work, in the order I'd bet on today:</p>
+
+  <ul>
+    <li>Someone reduced the problem before anyone implemented it.</li>
+    <li>Errors were treated as the normal case and designed for first.</li>
+    <li>The people who understood the business were given a tool they could operate, and the engineers stepped back to support them.</li>
+    <li>The schedule was unrealistic, and we said so, and then we changed the method rather than the hours.</li>
+  </ul>
+
+  <p>
+    None of this needed a product, a vendor or a budget. It needed someone with enough experience to see the patterns, and a team open-minded enough to let the method change. That combination is rarer than it should be, which is roughly why <a href="eighty-percent.html">eighty percent</a> of these projects fail — and why I don't take much personal credit for this one. The people were right, and the timing was lucky. I mostly noticed.
+  </p>
+
+  <p class="end"><a href="../#writing">← All writing</a> · <a href="../#contact">Get in touch</a></p>
+
+</article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Horizon Crafts Piotr Jodko · Kraków area, Poland · <a href="mailto:piotr@horizoncrafts.com">piotr@horizoncrafts.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
