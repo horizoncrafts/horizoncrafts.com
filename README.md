@@ -25,7 +25,8 @@ then open http://localhost:8123. (`python3 -m http.server 8123` works too, once 
 2. Repo → Settings → Pages → Source: *Deploy from a branch*, `main` / `/ (root)`.
    Custom domain: `horizoncrafts.com` (the `CNAME` file already says so). Tick *Enforce HTTPS* once the certificate is issued (can take up to an hour after DNS is right).
 3. At OVH, in the DNS zone for `horizoncrafts.com`:
-   - remove the existing `A` records pointing at `216.239.3x.21` (the old Google Sites redirect);
+   - remove the existing `A` records pointing at `216.239.3x.21` (the old Google Sites site), and the apex `AAAA` record pointing at `2001:41d0:301:5::29` (the old OVH redirect);
+   - remove the old OVH redirect TXT record `1|www.horizoncrafts.com` if it is still present;
    - add four `A` records for the apex: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`;
    - change `www` from `CNAME ghs.googlehosted.com` to `CNAME horizoncrafts.github.io`;
    - **leave every mail record alone** — the `MX` records, the `v=spf1` TXT, the `google-site-verification` TXT, `google._domainkey` (DKIM) and `_dmarc`. Mail authentication is verified working; deleting any of these breaks it silently. The full list lives in the private brief, not in this repo.
